@@ -13,7 +13,10 @@ GROUP BY name_album;
 SELECT DISTINCT name_singer FROM Singer s
 JOIN Singer_Album a ON s.id = a.singer_id
 JOIN Album l ON a.album_id = l.id
-WHERE release_year NOT BETWEEN 2020 AND 2020;
+WHERE name_singer NOT IN (SELECT name_singer FROM Singer s
+						 JOIN Singer_Album a ON s.id = a.singer_id
+						 JOIN Album l ON a.album_id = l.id
+						 WHERE release_year = 2020);
 
 SELECT DISTINCT name_collection FROM Collection c
 JOIN Collection_Track ct ON c.id = ct.collection_id
