@@ -10,20 +10,18 @@ SELECT name_album, AVG(length_track) FROM Track t
 JOIN Album a ON a.id = t.album_id
 GROUP BY name_album;
 
-SELECT name_singer FROM Singer s
+SELECT DISTINCT name_singer FROM Singer s
 JOIN Singer_Album a ON s.id = a.singer_id
 JOIN Album l ON a.album_id = l.id
-WHERE release_year != 2020
-GROUP BY name_singer;
+WHERE release_year NOT BETWEEN 2020 AND 2020;
 
-SELECT name_collection FROM Collection c
+SELECT DISTINCT name_collection FROM Collection c
 JOIN Collection_Track ct ON c.id = ct.collection_id
 JOIN Track t ON ct.track_id = t.id
 JOIN Album a ON t.album_id = a.id
 JOIN Singer_Album sa ON a.id = sa.album_id
 JOIN Singer s ON sa.singer_id = s.id
-WHERE name_singer = 'Король и шут'
-GROUP BY name_collection;
+WHERE name_singer = 'Король и шут';
 
 SELECT name_album FROM Album a
 JOIN Singer_Album sa ON a.id = sa.album_id
